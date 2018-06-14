@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro produto</title>
+        
+        <style>
+            body {
+                background: #f4f5f9;
+            }
+
+            h1 {
+                margin-bottom: 1rem;
+            }
+
+            body {
+                font-family: sans-serif;
+                padding: 2em;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            body, input, select, textarea, button {
+                font-family: sans-serif;
+                font-size: 1em;
+            }
+
+
+            .label {
+                margin: 10px 0 5px 0;
+            }
+
+            .campo {
+                margin-bottom: 1em;
+            }
+
+            .campo label {
+                margin-bottom: 0.2em;
+                color: #666;
+                display: block;
+            }
+
+            .campo input[type="text"],
+            .campo input[type="number"],
+            .campo select,
+            .campo textarea {
+                padding: 0.2em;
+                border: 1px solid #CCC;
+                box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+                display: block;
+            }
+
+            .campo select option {
+                padding-right: 1em;
+            }
+
+            .campo input:focus, .campo select:focus, .campo textarea:focus {
+                background: #FFC;
+            }
+
+            .campo label.checkbox {
+                color: #000;
+                display: inline-block;
+                margin-right: 1em;
+            }
+
+            .botao {
+                font-size: 1.5em;
+                background: #4CAF50;
+                border: 0;
+                margin-bottom: 1em;
+                color: #FFF;
+                width: 150px;
+                box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+                text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+            }    
+
+            .botao, select, label {
+                cursor: pointer;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h3>Cadastro produto</h3>
+        
+        <h:form id="form-produto">
+            <input type="hidden" name="codigo" value="${produto.codigo}"/>
+
+            <div class="campo">
+                <div class="label" for="descricao">Descrição</div>
+                <p:inputText value="#{produtoMB.produto.descricao}" />
+            </div>
+            
+            <div class="campo">
+                <div class="label" for="publico">Público</div>
+                <p:inputText value="#{produtoMB.produto.publico}" />
+            </div>
+            
+            <div class="campo">
+                <div class="label" for="quantidade">Quantidade</div>
+                <p:inputText value="#{produtoMB.produto.quantidade}" />
+            </div>
+            
+            <div class="campo">
+                <div class="label" for="tamanho">Tamanho</div>
+                <p:inputText value="#{produtoMB.produto.tamanho}" />
+            </div>
+            
+            <div class="campo">
+                <div class="label" for="descricao">Valor</div>
+                <p:inputText value="#{produtoMB.produto.valor}" />
+            </div>
+            
+            <p:commandButton class="botao" update="form-produto" action="#{produtoMB.salvarProduto()}" value="Salvar" />
+             
+            <p:commandButton class="botao" action="#{rotasMB.openEstoque()}" value="Voltar" ></p:commandButton>
+    </h:form>
+    </h:body>
+</html>
+

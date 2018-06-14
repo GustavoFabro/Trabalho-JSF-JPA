@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Início</title>
+        
+        <style>
+            body {
+                background: #f4f5f9;
+            }
+
+            form {
+                display: inline;
+            }
+
+            p {
+                text-align: left;
+                margin-top: 2px;
+            }
+
+            a {
+                text-align: left;
+                align-items: flex-start;
+                margin-top:10px; 
+                color:green;
+                display: block
+            }
+
+            h1 {
+                color: white;
+                text-align: center;
+                text-shadow: #000 0px 0px 2px;             
+            }
+
+            font {
+                font-size:40px; 
+                color: white;                
+            }
+
+            .button {
+                background-color: #808080;
+                border: solid 3px;
+                color: white;
+                padding: 10px 15px;
+                text-align: center;
+                text-decoration: none;
+                margin: 40px;
+                font-size: 28px;
+                cursor: pointer;
+                width: 160px;
+                height: 80px;
+            }
+
+            .btn_login {
+              margin: -10px -10px; 
+                position:relative;
+                top:50%; 
+                left:-9%;
+            }
+
+            .container {
+                position: absolute;
+                width: 800px;
+                height: 210px;
+                margin: -105px 0 0 -400px;
+                top: 50%;
+                left: 50%;
+                padding: 10px 10px 10px 10px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form>
+                <h:commandButton action="#{rotasMB.openVenda()}" class="button" value="Venda" ></h:commandButton>
+            </h:form>
+            
+            <h:form>
+                <h:commandButton action="#{rotasMB.openEstoque()}" class="button" value="Estoque" ></h:commandButton>
+            </h:form>
+
+            <h:form>
+                <h:commandButton action="#{rotasMB.openReport()}" class="button" value="Relatório" ></h:commandButton>
+            </h:form>
+
+            <!--<h:form>
+                <h:commandButton  class="button" value="Sair" ></h:commandButton>
+            </h:form> -->
+        </div>
+    </h:body>
+</html>
+
