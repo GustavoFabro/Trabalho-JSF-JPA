@@ -4,10 +4,11 @@ import aplicacao.vendas.model.Venda;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class VendaMB {
     private Venda venda;
     private List<Venda> listaVendas;
