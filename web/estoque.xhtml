@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
         <title>Controle de Estoque</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js" integrity="sha384-u/bQvRA/1bobcXlcEYpsEdFVK/vJs3+T+nXLsBYJthmdBuavHvAW6UsmqO2Gd/F9" crossorigin="anonymous"></script>
-    </head>
-    <body>
+    </h:head>
+    <h:body>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
       <a class="navbar-brand" href="index.xhtml">Controle de Estoque</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,8 +35,48 @@
         </ul>
       </div>
     </nav>
+        <div class="container">
+            <h:form>
+                <h:commandButton action="#{rotasMB.openCadastroProduto()}" class="button" value="Novo" ></h:commandButton>
+            </h:form> 
+
+            <h:form>
+                <h:commandButton action="#{rotasMB.openHome()}" class="button" value="Menu" ></h:commandButton>               
+            </h:form> 
+            
+            <h:form>
+                <p:panel id="lista-produtos" header="Lista de produtos">
+                    <p:dataTable class="list" var="p" value="#{produtoMB.listaProdutos}">
+                        <p:column headerText="Código">
+                            #{p.codigo}
+                        </p:column>
+                        <p:column headerText="Descrição">
+                            #{p.descricao}
+                        </p:column>
+                        <p:column headerText="Público">
+                            #{p.publico}
+                        </p:column>
+                        <p:column headerText="Quantidade">
+                            #{p.quantidade}
+                        </p:column>
+                        <p:column headerText="Tamanho">
+                            #{p.tamanho}
+                        </p:column>
+                        <p:column headerText="Valor">
+                            #{p.valor}
+                        </p:column>
+                        <p:column >
+                            <p:commandLink update="@form:lista-produtos" action="#{produtoMB.removerProduto(p)}">Excluir</p:commandLink>
+                        </p:column>
+                        <p:column>
+                            <p:commandLink action="#{produtoMB.editarItem(p)}">Editar</p:commandLink>
+                        </p:column>
+                   </p:dataTable>
+                </p:panel>
+            </h:form>
+        </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="../../../../assets/js/vendor/popper.min.js"></script>
     <script src="../../../../dist/js/bootstrap.min.js"></script>
-    </body>
+    </h:body>
 </html>
