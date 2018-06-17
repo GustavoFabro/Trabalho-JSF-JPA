@@ -1,10 +1,11 @@
 package aplicacao.vendas.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Venda {
     private Integer codigo;
-    private Produto produto;
+    private List<Produto> produto;
     private Integer quantidade;
     private LocalDate data;
      
@@ -16,13 +17,14 @@ public class Venda {
         this.codigo = codigo;
     }
 
-    public Produto getProduto() {
+    public List<Produto> getProduto() {
         return produto;
     }
 
-    public void setProduto(Produto produto) {
+    public void setProduto(List<Produto> produto) {
         this.produto = produto;
     }
+
 
     public Integer getQuantidade() {
         return quantidade;

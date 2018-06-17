@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Cadastro vendas</title>
         
@@ -87,28 +88,15 @@
     </h:head>
     <h:body>
         <h3>Realizar venda</h3>
-        
-        <h:form id="form-venda">
-            <input type="hidden" name="codigo" value="${vendaMB.venda.codigo}"/>
-
-            <div class="campo">
-                <div class="label" for="descricao">Data</div>
-                <p:inputText value="#{vendaMB.venda.data}" />
-            </div>
+        <h:form>
+        <p:outputLabel  value="Produto:" />
+        <p:selectOneListbox id="advanced" value="#{vendaMB.produto}"  var="t" filter="true" filterMatchMode="contains">
+            <f:selectItems value="#{produtoMB.listaProdutos}" var="p" itemLabel="#{p.descricao}" itemValue="#{p.codigo}" /> 
+            <p:column>
+                <h:outputText value="#{p.descricao}" />
+            </p:column>
+        </p:selectOneListbox>
             
-            <div class="campo">
-                <div class="label" for="publico">Produto</div> <!--Fazer combobox-->
-                <!--<p:inputText value="" />-->
-            </div>
-            
-            <div class="campo">
-                <div class="label" for="quantidade">Quantidade</div>
-                <p:inputText value="#{vendaMB.venda.quantidade}" />
-            </div>
-                    
-            <p:commandButton class="botao" update="form-venda" action="#{vendaMB.salvarVenda()}" value="Salvar" />
-             
-            <p:commandButton class="botao" action="#{rotasMB.openVenda()}" value="Voltar" ></p:commandButton>
         </h:form>
     </h:body>
 </html>

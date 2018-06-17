@@ -1,5 +1,6 @@
 package aplicacao.vendas.mb;
 
+import aplicacao.vendas.model.Produto;
 import aplicacao.vendas.model.Venda;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +13,12 @@ import javax.faces.bean.ViewScoped;
 public class VendaMB {
     private Venda venda;
     private List<Venda> listaVendas;
-
+    private Produto produto;
+    
     public VendaMB(){
         venda = new Venda();
         listaVendas = new ArrayList<>();
+        produto = new Produto();
     }
         
     public void salvarVenda() {
@@ -29,12 +32,22 @@ public class VendaMB {
         this.venda = new Venda();
     }
     
+    
+    
     public void removerVenda(Venda venda) {
         this.listaVendas.remove(venda);
     }
 
     public Venda getVenda() {
         return venda;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public void setVenda(Venda venda) {
