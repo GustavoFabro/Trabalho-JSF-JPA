@@ -101,4 +101,8 @@ public class Produto {
     public String toString() {
         return getDescricao();
     }
+    
+    public void debitaEstoque(int quantidade) {
+        this.quantidade -= quantidade;
+    }
 }

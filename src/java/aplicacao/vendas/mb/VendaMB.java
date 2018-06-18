@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
@@ -15,6 +16,9 @@ public class VendaMB {
     private Venda venda;
     private List<Venda> listaVendas;
     
+    @ManagedProperty("#{produtoMB}")
+    private ProdutoMB produtoMb;
+    
     public VendaMB(){
         venda = new Venda();
         listaVendas = new ArrayList<>();
@@ -22,7 +26,8 @@ public class VendaMB {
         
     public void salvarVenda() {
         this.venda.setData(LocalDate.now());
-        this.venda.setProduto(new Produto());
+        produtoMb.debitarEstoque(this.venda.getQuantidade(), 
+                this.venda.getProduto().getCodigo());
         
         if(!this.listaVendas
                 .contains(this.venda)) {
@@ -52,5 +57,9 @@ public class VendaMB {
 
     public void setListaVendas(List<Venda> listaVendas) {
         this.listaVendas = listaVendas;
+    }
+
+    public void setProdutoMb(ProdutoMB produtoMb) {
+        this.produtoMb = produtoMb;
     }
 }

@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/trackback/git/Trabalho-JSF-JPA/web/relatorio.xhtml</file>
-            <file>file:/home/trackback/git/Trabalho-JSF-JPA/web/vendas.xhtml</file>
-            <file>file:/home/trackback/git/Trabalho-JSF-JPA/web/index.xhtml</file>
+            <file>file:/home/gustavo/NetBeansProjects/SistemaVendas/src/java/aplicacao/vendas/mb/ProdutoConverter.java</file>
+            <file>file:/home/gustavo/NetBeansProjects/SistemaVendas/src/java/aplicacao/vendas/model/Produto.java</file>
+            <file>file:/home/gustavo/NetBeansProjects/SistemaVendas/src/java/aplicacao/vendas/mb/ProdutoMB.java</file>
+            <file>file:/home/gustavo/NetBeansProjects/SistemaVendas/web/cadastro_venda.xhtml</file>
         </group>
     </open-files>
 </project-private>

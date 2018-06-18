@@ -42,12 +42,9 @@ public class RelatorioMB {
     }
     
     public void emitirRelatorio() {       
-        //Tive que usar Date ali em cima pois o p:calendar so aceita o Date e ai aqui converti. 
-        //E o LocalDate no modelo pois é melhor pra trabalhar com o banco
         LocalDate localDateIni = LocalDate.parse( new SimpleDateFormat("yyyy-MM-dd").format(dataIni) );
         LocalDate localDateFim = LocalDate.parse( new SimpleDateFormat("yyyy-MM-dd").format(dataFim) );
             
-        //Tem que ver se esse "vendaMb.getListaVendas()" esta funcionando; Nao pude testar pois nao tenho o cadastro de vendas pronto ainda
         vendasPeriodo = vendaMb.getListaVendas().stream()
                 .filter(p -> p.getData().isAfter(localDateIni.minusDays(1)) 
                           && p.getData().isBefore(localDateFim.plusDays(1)))
