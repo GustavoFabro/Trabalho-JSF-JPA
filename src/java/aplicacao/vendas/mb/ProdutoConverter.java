@@ -7,13 +7,15 @@ package aplicacao.vendas.mb;
 
 
 import aplicacao.vendas.model.Produto;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value = "produtoConverter")
+@ManagedBean
+@SessionScoped
 public class ProdutoConverter implements Converter {
     @ManagedProperty("#{produtoMB}")
     private ProdutoMB produtoMb;
@@ -23,9 +25,8 @@ public class ProdutoConverter implements Converter {
         if(value == null) {
             return null;
         }
-            
-        //Aqui deve-se retornar o produto correspondente. Filtrar na lista de produto do produtoMb pelo value e retornar esse produto
-        return new Produto();
+                    
+        return produtoMb.getProdutoByName(value);
     }
 
     @Override

@@ -3,6 +3,7 @@ package aplicacao.vendas.mb;
 import aplicacao.vendas.model.Produto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -52,5 +53,23 @@ public class ProdutoMB {
 
     public void setListaProdutos(List<Produto> listaProdutos) {
         this.listaProdutos = listaProdutos;
+    }
+    
+    public Produto getProdutoByName(String name) {
+        Produto produto = new Produto();
+        
+        for (Produto p : listaProdutos) {
+            if (p.getDescricao().equals(name)) {
+                produto = p;
+            }
+        }
+        
+        return produto;
+    }
+    
+    public void debitarEstoque(int quantidade, int codigoProduto) {
+        this.listaProdutos.stream()
+                .filter(p -> p.getCodigo() == codigoProduto)
+                .collect(Collectors.toList()).get(0).debitaEstoque(quantidade); 
     }
 }

@@ -6,6 +6,10 @@
     <h:head>
         <title>Lista vendas</title>
         <style>
+            body {
+                background: #f4f5f9;
+            }
+            
             form {
                 display: inline;
             }
@@ -61,7 +65,7 @@
     <h:body>
         <div class="container">
             <h:form>
-                <h:commandButton action="#{rotasMB.openCadastroVendas()}" class="button" value="Realizar venda" ></h:commandButton>
+                <h:commandButton action="#{rotasMB.openCadastroVendas()}" class="button" value="Nova" ></h:commandButton>
             </h:form> 
 
             <h:form>
@@ -78,6 +82,7 @@
                             #{v.data}
                         </p:column>
                         <p:column headerText="Produto">
+                            #{v.produto.descricao}
                         </p:column>
                         <p:column headerText="Quantidade">
                             #{v.quantidade}
