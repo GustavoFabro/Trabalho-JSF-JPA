@@ -88,15 +88,23 @@
     </h:head>
     <h:body>
         <h3>Realizar venda</h3>
-        <h:form>
-        <p:outputLabel  value="Produto:" />
-        <p:selectOneListbox id="advanced" value="#{vendaMB.produto}"  var="t" filter="true" filterMatchMode="contains">
-            <f:selectItems value="#{produtoMB.listaProdutos}" var="p" itemLabel="#{p.descricao}" itemValue="#{p.codigo}" /> 
-            <p:column>
-                <h:outputText value="#{p.descricao}" />
-            </p:column>
-        </p:selectOneListbox>
-            
+        <h:form id="form-venda">
+            <p:outputLabel  value="Produto:" />
+
+            <h:selectOneMenu value="#{vendaMB.venda.produto}">
+                <f:converter converterId="produtoConverter" />
+                <f:selectItem itemLabel="" itemValue="" />
+                <f:selectItems value="#{produtoMB.listaProdutos}" var="produto" itemLabel="#{produto.descricao}" itemValue="#{produto}" noSelectionValue="" />
+            </h:selectOneMenu>
+
+            <div class="campo">
+                <div class="label" for="quantidade">Quantidade</div>
+                <p:inputText value="#{vendaMB.venda.quantidade}" />
+            </div>
+
+            <p:commandButton class="botao" update="form-venda" action="#{vendaMB.salvarVenda()}" value="Salvar" />
+
+            <p:commandButton class="botao" action="#{rotasMB.openVenda()}" value="Voltar" ></p:commandButton>
         </h:form>
     </h:body>
 </html>

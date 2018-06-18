@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Venda {
     private Integer codigo;
-    private List<Produto> produto;
+    private Produto produto;
     private Integer quantidade;
     private LocalDate data;
      
@@ -16,15 +16,6 @@ public class Venda {
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
-
-    public List<Produto> getProduto() {
-        return produto;
-    }
-
-    public void setProduto(List<Produto> produto) {
-        this.produto = produto;
-    }
-
 
     public Integer getQuantidade() {
         return quantidade;
@@ -40,5 +31,13 @@ public class Venda {
 
     public void setData(LocalDate data) {
         this.data = data;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 }

@@ -96,4 +96,9 @@ public class Produto {
         Produto produto = (Produto) obj;
         return Objects.equals(getCodigo(), produto.getCodigo());
     }
+    
+    @Override
+    public String toString() {
+        return getDescricao();
+    }
 }

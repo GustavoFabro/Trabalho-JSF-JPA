@@ -20,7 +20,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class RelatorioMB {
-     @ManagedProperty("#{vendaMB}")
+    @ManagedProperty("#{vendaMB}")
     private VendaMB vendaMb; // +setter (no getter!)    
      
     private List<Venda> vendasPeriodo;   
