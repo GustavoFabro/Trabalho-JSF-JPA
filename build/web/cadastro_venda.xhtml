@@ -13,7 +13,7 @@
         <h:form id="form-venda">
             <p:outputLabel  value="Produto:" />
 
-            <h:selectOneMenu converter="#{produtoConverter}" value="#{vendaMB.venda.produto}">
+            <h:selectOneMenu  style="width:150px;" converter="#{produtoConverter}" value="#{vendaMB.venda.produto}">
                 <f:selectItem itemLabel="" itemValue="" />
                 <f:selectItems value="#{produtoMB.listaProdutos}" var="produto" itemLabel="#{produto.descricao}" itemValue="#{produto}" noSelectionValue="" />
             </h:selectOneMenu>

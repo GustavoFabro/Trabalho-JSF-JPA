@@ -1,6 +1,7 @@
 package aplicacao.vendas.mb;
 
 import aplicacao.vendas.model.Produto;
+import aplicacao.vendas.repositorio.ProdutoRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,22 +16,22 @@ public class ProdutoMB {
 
     public ProdutoMB(){
         produto = new Produto();
-        listaProdutos = new ArrayList<>();
+        listaProdutos = listarProdutos();
+    }
+    
+    public List<Produto> listarProdutos (){
+        return ProdutoRepositorio.getProdutos();
     }
         
     public void salvarProduto() {
-        if(!this.listaProdutos
-                .contains(this.produto)) {
-     
-            this.produto.setCodigo(listaProdutos.size() > 0? listaProdutos.get(listaProdutos.size()-1).getCodigo() + 1 : 1);
-            this.listaProdutos.add(this.produto);
-        }
+        ProdutoRepositorio.salvar(this.produto); 
         
         this.produto = new Produto();
     }
     
     public void removerProduto(Produto produto) {
-        this.listaProdutos.remove(produto);
+        ProdutoRepositorio.excluir(produto);
+        //listarProdutos();
     }
     
     public String editarItem(Produto produto) {

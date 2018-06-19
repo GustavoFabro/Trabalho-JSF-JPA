@@ -1,0 +1,33 @@
+/*C50*/SET SCHEMA PUBLIC
+CONNECT USER SA
+drop table item
+drop table pedido
+drop table produto
+CREATE TABLE produto (\u000a    codigo int,\u000a    descricao varchar(255),\u000a    cor varchar(30),\u000a    tamanho varchar(255),\u000a    quantidade int,\u000a    publico varchar(255),\u000a    valor decimal(5, 2)\u000a)
+drop table Produto\u000a
+CREATE TABLE produto (\u000a    codigo INTEGER IDENTITY PRIMARY KEY,\u000a    descricao varchar(255),\u000a    cor varchar(30),\u000a    tamanho varchar(255),\u000a    quantidade int,\u000a    publico varchar(255),\u000a    valor decimal(5, 2)\u000a)
+/*C51*/SET SCHEMA PUBLIC
+CONNECT USER SA
+DISCONNECT
+/*C52*/SET SCHEMA PUBLIC
+CONNECT USER SA
+SET AUTOCOMMIT FALSE
+INSERT INTO PRODUTO VALUES(0,'Produto 1',NULL,'1',1,'1',1.0)
+COMMIT
+SET AUTOCOMMIT TRUE
+SET AUTOCOMMIT FALSE
+INSERT INTO PRODUTO VALUES(1,'Teste ',NULL,'1',1,'1',0.0)
+COMMIT
+SET AUTOCOMMIT TRUE
+DISCONNECT
+/*C53*/SET SCHEMA PUBLIC
+CONNECT USER SA
+DISCONNECT
+/*C54*/SET SCHEMA PUBLIC
+CONNECT USER SA
+DISCONNECT
+/*C55*/SET SCHEMA PUBLIC
+CONNECT USER SA
+DISCONNECT
+/*C56*/SET SCHEMA PUBLIC
+CONNECT USER SA

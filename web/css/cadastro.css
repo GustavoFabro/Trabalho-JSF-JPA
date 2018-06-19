@@ -75,6 +75,10 @@ body, input, select, textarea, button {
     cursor: pointer;
 }
 
+.select{
+    width: 40px;
+}
+
         
         
         

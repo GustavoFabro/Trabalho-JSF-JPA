@@ -6,12 +6,12 @@
 package aplicacao.vendas.model;
 
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-/**
- *
- * @author gustavo
- */
+@Entity
 public class Produto {
+    @Id
     private Integer codigo;
     private String descricao;
     private String cor;
@@ -19,7 +19,6 @@ public class Produto {
     private Integer quantidade;
     private String publico;
     private float valor;
-    private Grupo grupo;
 
     public Integer getCodigo() {
         return codigo;
@@ -76,14 +75,6 @@ public class Produto {
     public void setValor(float valor) {
         this.valor = valor;
     }
-    
-    public Grupo getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }    
     
     @Override
     public boolean equals(Object obj) {
