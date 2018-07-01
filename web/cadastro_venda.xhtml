@@ -15,16 +15,15 @@
 
             <h:selectOneMenu  style="width:150px;" converter="#{produtoConverter}" value="#{vendaMB.venda.produto}">
                 <f:selectItem itemLabel="" itemValue="" />
-                <f:selectItems value="#{produtoMB.listaProdutos}" var="produto" itemLabel="#{produto.descricao}" itemValue="#{produto}" noSelectionValue="" />
+                <f:selectItems value="#{vendaMB.produtos}" var="p" itemLabel="#{p.descricao}" itemValue="#{p}" noSelectionValue="" />
             </h:selectOneMenu>
-
+             
             <div class="campo">
                 <div class="label" for="quantidade">Quantidade</div>
                 <p:inputText value="#{vendaMB.venda.quantidade}" />
             </div>
 
-            <p:commandButton class="botao" update="form-venda" action="#{vendaMB.salvarVenda()}" value="Salvar" />
-
+            <p:commandButton ajax="false" class="botao" update="form-venda" action="#{vendaMB.salvarVenda()}" value="Salvar" />
             <p:commandButton class="botao" action="#{rotasMB.openVenda()}" value="Voltar" ></p:commandButton>
         </h:form>
     </h:body>

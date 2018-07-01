@@ -6,16 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ProdutoMB {
     private Produto produto;
     private List<Produto> listaProdutos;
-
+    
     public ProdutoMB(){
         produto = new Produto();
+        atualizarLista();
+    }
+    
+    public void atualizarLista() {
         listaProdutos = listarProdutos();
     }
     
@@ -25,19 +29,19 @@ public class ProdutoMB {
         
     public void salvarProduto() {
         ProdutoRepositorio.salvar(this.produto); 
-        
+
         this.produto = new Produto();
     }
     
-    public void removerProduto(Produto produto) {
+    public void removerProduto(Produto produto) {               
         ProdutoRepositorio.excluir(produto);
-        //listarProdutos();
+        atualizarLista();
     }
     
     public String editarItem(Produto produto) {
         this.produto = produto;
                 
-        return "cadastro_produto.xhtml?faces-redirect=true";
+        return "cadastro_produto.xhtml";
     }
 
     public Produto getProduto() {

@@ -7,18 +7,16 @@ package aplicacao.vendas.mb;
 
 
 import aplicacao.vendas.model.Produto;
+import aplicacao.vendas.repositorio.ProdutoRepositorio;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ProdutoConverter implements Converter {
-    @ManagedProperty("#{produtoMB}")
-    private ProdutoMB produtoMb;
     
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
@@ -26,7 +24,7 @@ public class ProdutoConverter implements Converter {
             return null;
         }
                     
-        return produtoMb.getProdutoByName(value);
+        return ProdutoRepositorio.getProduto(value);
     }
 
     @Override
@@ -40,10 +38,5 @@ public class ProdutoConverter implements Converter {
         
         Produto produto = (Produto) o;
         return produto.getDescricao();
-    }
-
-    public void setProdutoMb(ProdutoMB produtoMb) {
-        this.produtoMb = produtoMb;
-    }
-    
+    }    
 }

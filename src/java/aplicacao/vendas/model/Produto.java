@@ -5,12 +5,15 @@
  */
 package aplicacao.vendas.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
-public class Produto {
+@Entity(name = "Produto")
+@Table(name = "produto")
+public class Produto implements Serializable{
     @Id
     private Integer codigo;
     private String descricao;
@@ -76,6 +79,11 @@ public class Produto {
         this.valor = valor;
     }
     
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getCodigo());
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

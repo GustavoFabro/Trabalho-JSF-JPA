@@ -6,6 +6,7 @@
 package aplicacao.vendas.mb;
 
 import aplicacao.vendas.model.Venda;
+import aplicacao.vendas.repositorio.VendaRepositorio;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,10 +20,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class RelatorioMB {
-    @ManagedProperty("#{vendaMB}")
-    private VendaMB vendaMb; // +setter (no getter!)    
-     
+public class RelatorioMB {  
     private List<Venda> vendasPeriodo;   
     private Date dataIni;
     private Date dataFim; 
@@ -42,13 +40,10 @@ public class RelatorioMB {
     }
     
     public void emitirRelatorio() {       
-        LocalDate localDateIni = LocalDate.parse( new SimpleDateFormat("yyyy-MM-dd").format(dataIni) );
-        LocalDate localDateFim = LocalDate.parse( new SimpleDateFormat("yyyy-MM-dd").format(dataFim) );
+        LocalDate dateIni = LocalDate.parse( new SimpleDateFormat("yyyy-MM-dd").format(dataIni) );
+        LocalDate dateFim = LocalDate.parse( new SimpleDateFormat("yyyy-MM-dd").format(dataFim) );
             
-        vendasPeriodo = vendaMb.getListaVendas().stream()
-                .filter(p -> p.getData().isAfter(localDateIni.minusDays(1)) 
-                          && p.getData().isBefore(localDateFim.plusDays(1)))
-                .collect(Collectors.toList()); 
+        vendasPeriodo = VendaRepositorio.getVendas(dateIni, dateFim);
     }
 
     public Date getDataIni() {
@@ -65,9 +60,5 @@ public class RelatorioMB {
 
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
-    }
-
-    public void setVendaMb(VendaMB vendaMb) {
-        this.vendaMb = vendaMb;
-    }   
+    } 
 }

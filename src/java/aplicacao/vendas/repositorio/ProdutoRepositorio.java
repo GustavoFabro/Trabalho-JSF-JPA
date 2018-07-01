@@ -26,18 +26,10 @@ public class ProdutoRepositorio {
     }
 
     public static void excluir(Produto produto) {
-        /*EntityManager em = JPA.getEM();
-        EntityTransaction t = em.getTransaction();
-        t.begin();
-        em.remove(em.find(Produto.class, produto.getCodigo()));
-        t.commit();*/
         EntityManager em = JPA.getEM();
         EntityTransaction t = em.getTransaction();
         t.begin();
-
-        Query query = em.createQuery("delete from Produto p where p.codigo = :codigo");
-        
-        query.setParameter("codigo", produto.getCodigo()).executeUpdate();
+        em.remove(em.find(Produto.class, produto.getCodigo()));
         t.commit();
     }
 
@@ -55,10 +47,23 @@ public class ProdutoRepositorio {
         return em.createQuery("select p from Produto p", Produto.class).getResultList();
     }
         
-    public static List<Produto> getProdutos(String valor) {
+    public static Produto getProduto(String valor) {
         EntityManager em = JPA.getEM();
         TypedQuery<Produto> query = em.createQuery("select x from Produto x where x.descricao like :valor", Produto.class);
         query.setParameter("valor", "%" + valor + "%");
-        return query.getResultList();
+        
+        return query.getResultList().get(0);
+    }
+    
+    public static void debitarEstoque(Produto produto, int quantidade) {
+        EntityManager em = JPA.getEM();
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+
+        produto.setQuantidade(produto.getQuantidade() - quantidade);
+        em.merge(produto);
+        
+        
+        t.commit();
     }
 }

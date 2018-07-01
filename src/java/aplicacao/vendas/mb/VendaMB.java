@@ -2,40 +2,41 @@ package aplicacao.vendas.mb;
 
 import aplicacao.vendas.model.Produto;
 import aplicacao.vendas.model.Venda;
+import aplicacao.vendas.repositorio.ProdutoRepositorio;
+import aplicacao.vendas.repositorio.VendaRepositorio;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class VendaMB {
     private Venda venda;
     private List<Venda> listaVendas;
-    
-    @ManagedProperty("#{produtoMB}")
-    private ProdutoMB produtoMb;
-    
+    private List<Produto> produtos;
+
     public VendaMB(){
         venda = new Venda();
-        listaVendas = new ArrayList<>();
+        produtos = ProdutoRepositorio.getProdutos();
+        atualizarLista();
+    }
+    
+    public void atualizarLista() {
+        listaVendas = listarVendas();
+    }    
+    
+     public List<Venda> listarVendas (){
+        return VendaRepositorio.getVendas();
     }
         
+    
     public void salvarVenda() {
         this.venda.setData(LocalDate.now());
-        produtoMb.debitarEstoque(this.venda.getQuantidade(), 
-                this.venda.getProduto().getCodigo());
+        VendaRepositorio.salvar(this.venda); 
+        ProdutoRepositorio.debitarEstoque(this.venda.getProduto(), this.venda.getQuantidade());
         
-        if(!this.listaVendas
-                .contains(this.venda)) {
-     
-            this.venda.setCodigo(listaVendas.size() > 0? listaVendas.get(listaVendas.size()-1).getCodigo() + 1 : 1);
-            this.listaVendas.add(this.venda);
-        }
-
         this.venda = new Venda();
     }
     
@@ -59,7 +60,13 @@ public class VendaMB {
         this.listaVendas = listaVendas;
     }
 
-    public void setProdutoMb(ProdutoMB produtoMb) {
-        this.produtoMb = produtoMb;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+    
+    
 }
